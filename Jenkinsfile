@@ -41,5 +41,10 @@ dockerNode {
       img.push(tagName)
       img.push('latest')
     }
+
+    stage('Deploy to ECS') {
+      def image = "923402097046.dkr.ecr.eu-central-1.amazonaws.com/sonarqube:$tagName"
+      ecsDeploy("--aws-instance-profile -r eu-central-1 -c buildtools-stable -n sonarqube -i $image")
+    }
   }
 }
