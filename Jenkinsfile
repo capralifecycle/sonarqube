@@ -32,12 +32,12 @@ dockerNode {
   }
 
   if (env.BRANCH_NAME == 'master') {
-    stage('Push Docker image') {
-      def tagName = sh([
-        returnStdout: true,
-        script: 'date +%Y%m%d-%H%M'
-      ]).trim() + '-' + env.BUILD_NUMBER
+    def tagName = sh([
+      returnStdout: true,
+      script: 'date +%Y%m%d-%H%M'
+    ]).trim() + '-' + env.BUILD_NUMBER
 
+    stage('Push Docker image') {
       img.push(tagName)
       img.push('latest')
     }
