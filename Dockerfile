@@ -12,7 +12,8 @@ RUN apk add -Uuv \
     && cd $SONARQUBE_HOME/extensions/plugins \
     && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-4.11.0.10660.jar \
     && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-3.1.1.5128.jar \
-    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-scm-git-plugin/sonar-scm-git-plugin-1.2.jar
+    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-scm-git-plugin/sonar-scm-git-plugin-1.2.jar \
+    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-github-plugin/sonar-github-plugin-1.4.1.822.jar
 
 COPY container/entrypoint.sh /entrypoint.sh
 
