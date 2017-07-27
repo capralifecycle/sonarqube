@@ -20,18 +20,23 @@ properties([
   ],
 ])
 
+def dockerImageName = '923402097046.dkr.ecr.eu-central-1.amazonaws.com/sonarqube'
+
 dockerNode {
   stage('Checkout source') {
     checkout scm
   }
 
   def img
+  def lastImageId = dockerPullCacheImage(dockerImageName)
 
   stage('Build Docker image') {
-    img = docker.build('sonarqube', '--pull .')
+    img = docker.build(dockerImageName, "--cache-from $dockerImageName:$lastImageId --pull .")
   }
 
-  if (env.BRANCH_NAME == 'master') {
+  def isSameImage = dockerPushCacheImage(img, lastImageId)
+
+  if (env.BRANCH_NAME == 'master' && !isSameImage) {
     def tagName = sh([
       returnStdout: true,
       script: 'date +%Y%m%d-%H%M'
@@ -43,7 +48,7 @@ dockerNode {
     }
 
     stage('Deploy to ECS') {
-      def image = "923402097046.dkr.ecr.eu-central-1.amazonaws.com/sonarqube:$tagName"
+      def image = "$dockerImageName:$tagName"
       ecsDeploy("--aws-instance-profile -r eu-central-1 -c buildtools-stable -n sonarqube -i $image")
     }
   }
