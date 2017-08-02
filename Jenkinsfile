@@ -13,6 +13,10 @@ buildConfig([
       cron('H H(2-6) * * *'),
     ]),
   ],
+  slack: [
+    channel: '#cals-dev-info',
+    teamDomain: 'cals-capra',
+  ],
 ]) {
   dockerNode {
     stage('Checkout source') {
