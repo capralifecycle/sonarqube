@@ -46,6 +46,7 @@ buildConfig([
       stage('Deploy to ECS') {
         def image = "$dockerImageName:$tagName"
         ecsDeploy("--aws-instance-profile -r eu-central-1 -c buildtools-stable -n sonarqube -i $image")
+        slackNotify message: "Deploying new build of Sonarqube to ECS"
       }
     }
   }
