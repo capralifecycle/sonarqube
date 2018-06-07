@@ -1,4 +1,4 @@
-FROM sonarqube:6.4-alpine
+FROM sonarqube:6.7.4-alpine
 
 RUN apk add -Uuv \
       curl \
