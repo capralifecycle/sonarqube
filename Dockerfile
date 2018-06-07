@@ -10,10 +10,10 @@ RUN apk add -Uuv \
     \
     # Add our own extensions
     && cd $SONARQUBE_HOME/extensions/plugins \
-    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-4.11.0.10660.jar \
-    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-3.1.1.5128.jar \
-    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-scm-git-plugin/sonar-scm-git-plugin-1.2.jar \
-    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-github-plugin/sonar-github-plugin-1.4.1.822.jar
+    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.4.0.14284.jar \
+    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-4.1.0.6085.jar \
+    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-scm-git-plugin/sonar-scm-git-plugin-1.4.1.1128.jar \
+    && curl -O -fSL https://sonarsource.bintray.com/Distribution/sonar-github-plugin/sonar-github-plugin-1.4.2.1027.jar
 
 COPY container/entrypoint.sh /entrypoint.sh
 
