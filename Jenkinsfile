@@ -6,7 +6,6 @@
 def dockerImageName = '923402097046.dkr.ecr.eu-central-1.amazonaws.com/sonarqube'
 
 buildConfig([
-  githubUrl: 'https://github.com/capralifecycle/sonarqube-docker/',
   jobProperties: [
     pipelineTriggers([
       // Build a new version every night so we keep up to date with upstream changes
