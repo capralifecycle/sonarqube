@@ -2,7 +2,7 @@
 set -eu
 
 if [ -z "$1" ]; then
-  echo "Syntax: $0 <nexus-image-id>"
+  echo "Syntax: $0 <image-id>"
   exit 1
 fi
 
