@@ -64,3 +64,6 @@ if ! echo "$health" | grep -q "GREEN"; then
 else
   echo "SonarQube running healthy!"
 fi
+
+# Verify aws cli works so that it will work when we start the container.
+docker run --rm --entrypoint '' "$image_id" aws --version
