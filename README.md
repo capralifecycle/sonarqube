@@ -14,3 +14,13 @@ To test the build locally:
 ```bash
 ./test.sh
 ```
+
+## Auto-deployment
+
+This setup currently auto-deploys all builds on master to ECS directly
+from Jenkins. This is planned to be replaced with
+https://confluence.capraconsulting.no/display/CALS/SNS+Based+ECS+deploy+Semantic+Versioning
+
+Also note that deployments (at least between explicit versions) might require
+a database migration triggered from https://sonarqube.capra.tv/setup before
+the service is operational again.
