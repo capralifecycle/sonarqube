@@ -29,6 +29,12 @@ buildConfig([
       img = docker.build(dockerImageName, "--cache-from $lastImageId --pull .")
     }
 
+    stage('Test build') {
+      docker.image('docker').inside {
+        sh "./test-image.sh ${img.id}"
+      }
+    }
+
     def isSameImage = dockerPushCacheImage(img, lastImageId)
 
     if (env.BRANCH_NAME == 'master' && !isSameImage) {
