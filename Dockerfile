@@ -1,4 +1,4 @@
-FROM sonarqube:7.6-community@sha256:13cebaf9423a85995fb31c0f566677a1faa7d035346ce5496e789561c6e7f174
+FROM sonarqube:7.7-community@sha256:024084ef7a410c38d5830255a8f0c846c7c17a30c28f427ea3734b110dd39682
 
 USER root
 
