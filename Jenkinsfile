@@ -6,12 +6,6 @@
 def dockerImageName = '923402097046.dkr.ecr.eu-central-1.amazonaws.com/buildtools/service/sonarqube'
 
 buildConfig([
-  jobProperties: [
-    pipelineTriggers([
-      // Build a new version every night so we keep up to date with upstream changes
-      cron('H H(2-6) * * *'),
-    ]),
-  ],
   slack: [
     channel: '#cals-dev-info',
     teamDomain: 'cals-capra',
@@ -46,12 +40,6 @@ buildConfig([
       stage('Push Docker image') {
         img.push(tagName)
         img.push('latest')
-      }
-
-      stage('Deploy to ECS') {
-        def image = "$dockerImageName:$tagName"
-        ecsDeploy("--aws-instance-profile -r eu-central-1 -c buildtools-stable -n sonarqube -i $image --timeout 300")
-        slackNotify message: "Deploying new build of Sonarqube to ECS"
       }
     }
   }
